@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         editItem = findViewById(R.id.editItem);
         rvItems = findViewById(R.id.rvitems);
 
+        items = new ArrayList<>();
         loadItems();
-
 
         ItemsAdapter.OnLongClickListener onLongClickListener= new ItemsAdapter.OnLongClickListener() {
             @Override
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        items = new ArrayList<>();
         itemsAdapter = new ItemsAdapter(items, onLongClickListener);
         rvItems.setAdapter(itemsAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
@@ -74,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
     private File getDataFile() {
         return new File(getFilesDir(), "data.txt");
-
     }
 
     private void loadItems() {
+        Log.e("test", "test");
         try {
             items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
         } catch (IOException e) {
